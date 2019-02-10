@@ -1,20 +1,47 @@
+# import Interview from './generated/prisma.graphql'
+# import Exam from './generated/prisma.graphql'
+# import Summary from './generated/prisma.graphql'
+# import History from './generated/prisma.graphql'
+# import SnapComment from './generated/prisma.graphql'
+# import Question from './generated/prisma.graphql'
+# import QuestionSnapshot from './generated/prisma.graphql'
+
 type Query {
-  info: String!
-  feed: [Link!]!
-  # Fetch a single link by its `id`
-  link(id: ID!): Link
+  interviews(where: InterviewWhereInput): [Interview!]!
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
+  me: User
 }
 
 type Mutation {
-  post(url: String!, description: String!): Link!
-  # Update a link
-  updateLink(id: ID!, url: String, description: String): Link
-  # Delete a link
-  deleteLink(id: ID!): Link
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createDraft(title: String!, content: String!): Post!
+  publish(id: ID!): Post!
+  deletePost(id: ID!): Post!
 }
 
-type Link {
+type Subscription {
+  feedSubscription: Post
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
   id: ID!
-  description: String!
-  url: String!
+  email: String!
+  name: String!
+  posts: [Post!]!
+}
+
+type Post {
+  id: ID!
+  published: Boolean!
+  title: String!
+  content: String!
+  author: User!
 }
