@@ -1,5 +1,4 @@
-module.exports = {
-        typeDefs: /* GraphQL */ `type AggregateExam {
+type AggregateExam {
   count: Int!
 }
 
@@ -2220,6 +2219,3 @@ input UserWhereUniqueInput {
   id: ID
   email: String
 }
-`
-      }
-    

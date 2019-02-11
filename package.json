@@ -1,24 +1,12 @@
 {
-  "name": "js-exam-backend",
-  "version": "1.0.0",
-  "description": "js-exam graphql server",
-  "main": "src/index.js",
+  "name": "graphql-boilerplate",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/index.js",
+    "start": "nodemon -e js,graphql -x node -r dotenv/config src/index.js",
+    "debug": "nodemon -e js,graphql -x node --inspect -r dotenv/config src/index.js",
     "prisma:deploy": "prisma deploy",
     "prisma:generate": "prisma generate"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/innovap3/js-exam-backend.git"
-  },
-  "author": "innovap3",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/innovap3/js-exam-backend/issues"
-  },
-  "homepage": "https://github.com/innovap3/js-exam-backend#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "graphql-yoga": "^1.17.0",
@@ -26,7 +14,11 @@
     "prisma-client-lib": "^1.25.1"
   },
   "devDependencies": {
+    "dotenv": "6.2.0",
     "nodemon": "^1.18.9",
-    "prisma": "^1.25.1"
+    "prisma": "^1.25.1",
+    "graphql-yoga": "1.17.2",
+    "jsonwebtoken": "8.4.0",
+    "prisma-client-lib": "1.25.7"
   }
 }

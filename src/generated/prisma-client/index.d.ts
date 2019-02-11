@@ -14,7 +14,13 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
-  link: (where?: LinkWhereInput) => Promise<boolean>;
+  exam: (where?: ExamWhereInput) => Promise<boolean>;
+  history: (where?: HistoryWhereInput) => Promise<boolean>;
+  interview: (where?: InterviewWhereInput) => Promise<boolean>;
+  question: (where?: QuestionWhereInput) => Promise<boolean>;
+  questionSnapshot: (where?: QuestionSnapshotWhereInput) => Promise<boolean>;
+  snapComment: (where?: SnapCommentWhereInput) => Promise<boolean>;
+  summary: (where?: SummaryWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -37,25 +43,141 @@ export interface Prisma {
    * Queries
    */
 
-  link: (where: LinkWhereUniqueInput) => LinkPromise;
-  links: (args?: {
-    where?: LinkWhereInput;
-    orderBy?: LinkOrderByInput;
+  exam: (where: ExamWhereUniqueInput) => ExamPromise;
+  exams: (args?: {
+    where?: ExamWhereInput;
+    orderBy?: ExamOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<Link>;
-  linksConnection: (args?: {
-    where?: LinkWhereInput;
-    orderBy?: LinkOrderByInput;
+  }) => FragmentableArray<Exam>;
+  examsConnection: (args?: {
+    where?: ExamWhereInput;
+    orderBy?: ExamOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => LinkConnectionPromise;
+  }) => ExamConnectionPromise;
+  history: (where: HistoryWhereUniqueInput) => HistoryPromise;
+  histories: (args?: {
+    where?: HistoryWhereInput;
+    orderBy?: HistoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<History>;
+  historiesConnection: (args?: {
+    where?: HistoryWhereInput;
+    orderBy?: HistoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => HistoryConnectionPromise;
+  interview: (where: InterviewWhereUniqueInput) => InterviewPromise;
+  interviews: (args?: {
+    where?: InterviewWhereInput;
+    orderBy?: InterviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Interview>;
+  interviewsConnection: (args?: {
+    where?: InterviewWhereInput;
+    orderBy?: InterviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => InterviewConnectionPromise;
+  question: (where: QuestionWhereUniqueInput) => QuestionPromise;
+  questions: (args?: {
+    where?: QuestionWhereInput;
+    orderBy?: QuestionOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Question>;
+  questionsConnection: (args?: {
+    where?: QuestionWhereInput;
+    orderBy?: QuestionOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => QuestionConnectionPromise;
+  questionSnapshot: (
+    where: QuestionSnapshotWhereUniqueInput
+  ) => QuestionSnapshotPromise;
+  questionSnapshots: (args?: {
+    where?: QuestionSnapshotWhereInput;
+    orderBy?: QuestionSnapshotOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<QuestionSnapshot>;
+  questionSnapshotsConnection: (args?: {
+    where?: QuestionSnapshotWhereInput;
+    orderBy?: QuestionSnapshotOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => QuestionSnapshotConnectionPromise;
+  snapComment: (where: SnapCommentWhereUniqueInput) => SnapCommentPromise;
+  snapComments: (args?: {
+    where?: SnapCommentWhereInput;
+    orderBy?: SnapCommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<SnapComment>;
+  snapCommentsConnection: (args?: {
+    where?: SnapCommentWhereInput;
+    orderBy?: SnapCommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => SnapCommentConnectionPromise;
+  summary: (where: SummaryWhereUniqueInput) => SummaryPromise;
+  summaries: (args?: {
+    where?: SummaryWhereInput;
+    orderBy?: SummaryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Summary>;
+  summariesConnection: (args?: {
+    where?: SummaryWhereInput;
+    orderBy?: SummaryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => SummaryConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (args?: {
     where?: UserWhereInput;
@@ -81,22 +203,126 @@ export interface Prisma {
    * Mutations
    */
 
-  createLink: (data: LinkCreateInput) => LinkPromise;
-  updateLink: (args: {
-    data: LinkUpdateInput;
-    where: LinkWhereUniqueInput;
-  }) => LinkPromise;
-  updateManyLinks: (args: {
-    data: LinkUpdateManyMutationInput;
-    where?: LinkWhereInput;
+  createExam: (data: ExamCreateInput) => ExamPromise;
+  updateExam: (args: {
+    data: ExamUpdateInput;
+    where: ExamWhereUniqueInput;
+  }) => ExamPromise;
+  updateManyExams: (args: {
+    data: ExamUpdateManyMutationInput;
+    where?: ExamWhereInput;
   }) => BatchPayloadPromise;
-  upsertLink: (args: {
-    where: LinkWhereUniqueInput;
-    create: LinkCreateInput;
-    update: LinkUpdateInput;
-  }) => LinkPromise;
-  deleteLink: (where: LinkWhereUniqueInput) => LinkPromise;
-  deleteManyLinks: (where?: LinkWhereInput) => BatchPayloadPromise;
+  upsertExam: (args: {
+    where: ExamWhereUniqueInput;
+    create: ExamCreateInput;
+    update: ExamUpdateInput;
+  }) => ExamPromise;
+  deleteExam: (where: ExamWhereUniqueInput) => ExamPromise;
+  deleteManyExams: (where?: ExamWhereInput) => BatchPayloadPromise;
+  createHistory: (data: HistoryCreateInput) => HistoryPromise;
+  updateHistory: (args: {
+    data: HistoryUpdateInput;
+    where: HistoryWhereUniqueInput;
+  }) => HistoryPromise;
+  updateManyHistories: (args: {
+    data: HistoryUpdateManyMutationInput;
+    where?: HistoryWhereInput;
+  }) => BatchPayloadPromise;
+  upsertHistory: (args: {
+    where: HistoryWhereUniqueInput;
+    create: HistoryCreateInput;
+    update: HistoryUpdateInput;
+  }) => HistoryPromise;
+  deleteHistory: (where: HistoryWhereUniqueInput) => HistoryPromise;
+  deleteManyHistories: (where?: HistoryWhereInput) => BatchPayloadPromise;
+  createInterview: (data: InterviewCreateInput) => InterviewPromise;
+  updateInterview: (args: {
+    data: InterviewUpdateInput;
+    where: InterviewWhereUniqueInput;
+  }) => InterviewPromise;
+  updateManyInterviews: (args: {
+    data: InterviewUpdateManyMutationInput;
+    where?: InterviewWhereInput;
+  }) => BatchPayloadPromise;
+  upsertInterview: (args: {
+    where: InterviewWhereUniqueInput;
+    create: InterviewCreateInput;
+    update: InterviewUpdateInput;
+  }) => InterviewPromise;
+  deleteInterview: (where: InterviewWhereUniqueInput) => InterviewPromise;
+  deleteManyInterviews: (where?: InterviewWhereInput) => BatchPayloadPromise;
+  createQuestion: (data: QuestionCreateInput) => QuestionPromise;
+  updateQuestion: (args: {
+    data: QuestionUpdateInput;
+    where: QuestionWhereUniqueInput;
+  }) => QuestionPromise;
+  updateManyQuestions: (args: {
+    data: QuestionUpdateManyMutationInput;
+    where?: QuestionWhereInput;
+  }) => BatchPayloadPromise;
+  upsertQuestion: (args: {
+    where: QuestionWhereUniqueInput;
+    create: QuestionCreateInput;
+    update: QuestionUpdateInput;
+  }) => QuestionPromise;
+  deleteQuestion: (where: QuestionWhereUniqueInput) => QuestionPromise;
+  deleteManyQuestions: (where?: QuestionWhereInput) => BatchPayloadPromise;
+  createQuestionSnapshot: (
+    data: QuestionSnapshotCreateInput
+  ) => QuestionSnapshotPromise;
+  updateQuestionSnapshot: (args: {
+    data: QuestionSnapshotUpdateInput;
+    where: QuestionSnapshotWhereUniqueInput;
+  }) => QuestionSnapshotPromise;
+  updateManyQuestionSnapshots: (args: {
+    data: QuestionSnapshotUpdateManyMutationInput;
+    where?: QuestionSnapshotWhereInput;
+  }) => BatchPayloadPromise;
+  upsertQuestionSnapshot: (args: {
+    where: QuestionSnapshotWhereUniqueInput;
+    create: QuestionSnapshotCreateInput;
+    update: QuestionSnapshotUpdateInput;
+  }) => QuestionSnapshotPromise;
+  deleteQuestionSnapshot: (
+    where: QuestionSnapshotWhereUniqueInput
+  ) => QuestionSnapshotPromise;
+  deleteManyQuestionSnapshots: (
+    where?: QuestionSnapshotWhereInput
+  ) => BatchPayloadPromise;
+  createSnapComment: (data: SnapCommentCreateInput) => SnapCommentPromise;
+  updateSnapComment: (args: {
+    data: SnapCommentUpdateInput;
+    where: SnapCommentWhereUniqueInput;
+  }) => SnapCommentPromise;
+  updateManySnapComments: (args: {
+    data: SnapCommentUpdateManyMutationInput;
+    where?: SnapCommentWhereInput;
+  }) => BatchPayloadPromise;
+  upsertSnapComment: (args: {
+    where: SnapCommentWhereUniqueInput;
+    create: SnapCommentCreateInput;
+    update: SnapCommentUpdateInput;
+  }) => SnapCommentPromise;
+  deleteSnapComment: (where: SnapCommentWhereUniqueInput) => SnapCommentPromise;
+  deleteManySnapComments: (
+    where?: SnapCommentWhereInput
+  ) => BatchPayloadPromise;
+  createSummary: (data: SummaryCreateInput) => SummaryPromise;
+  updateSummary: (args: {
+    data: SummaryUpdateInput;
+    where: SummaryWhereUniqueInput;
+  }) => SummaryPromise;
+  updateManySummaries: (args: {
+    data: SummaryUpdateManyMutationInput;
+    where?: SummaryWhereInput;
+  }) => BatchPayloadPromise;
+  upsertSummary: (args: {
+    where: SummaryWhereUniqueInput;
+    create: SummaryCreateInput;
+    update: SummaryUpdateInput;
+  }) => SummaryPromise;
+  deleteSummary: (where: SummaryWhereUniqueInput) => SummaryPromise;
+  deleteManySummaries: (where?: SummaryWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput;
@@ -122,9 +348,27 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  link: (
-    where?: LinkSubscriptionWhereInput
-  ) => LinkSubscriptionPayloadSubscription;
+  exam: (
+    where?: ExamSubscriptionWhereInput
+  ) => ExamSubscriptionPayloadSubscription;
+  history: (
+    where?: HistorySubscriptionWhereInput
+  ) => HistorySubscriptionPayloadSubscription;
+  interview: (
+    where?: InterviewSubscriptionWhereInput
+  ) => InterviewSubscriptionPayloadSubscription;
+  question: (
+    where?: QuestionSubscriptionWhereInput
+  ) => QuestionSubscriptionPayloadSubscription;
+  questionSnapshot: (
+    where?: QuestionSnapshotSubscriptionWhereInput
+  ) => QuestionSnapshotSubscriptionPayloadSubscription;
+  snapComment: (
+    where?: SnapCommentSubscriptionWhereInput
+  ) => SnapCommentSubscriptionPayloadSubscription;
+  summary: (
+    where?: SummarySubscriptionWhereInput
+  ) => SummarySubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -138,81 +382,299 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type LinkOrderByInput =
+export type InterviewStatus = "IN_PROGRESS" | "CLOSED";
+
+export type QuestionType = "JAVASCRIPT" | "REACTJS";
+
+export type SnapCommentOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "url_ASC"
-  | "url_DESC"
   | "updatedAt_ASC"
-  | "updatedAt_DESC";
+  | "updatedAt_DESC"
+  | "author_ASC"
+  | "author_DESC"
+  | "content_ASC"
+  | "content_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
   | "email_ASC"
   | "email_DESC"
   | "password_ASC"
   | "password_DESC"
+  | "name_ASC"
+  | "name_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
+export type InterviewOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "status_ASC"
+  | "status_DESC"
+  | "intervieweeName_ASC"
+  | "intervieweeName_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "password_ASC"
+  | "password_DESC";
+
+export type ExamOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "status_ASC"
+  | "status_DESC"
+  | "syncCode_ASC"
+  | "syncCode_DESC";
+
+export type SummaryOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "author_ASC"
+  | "author_DESC"
+  | "content_ASC"
+  | "content_DESC";
+
+export type HistoryOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "code_ASC"
+  | "code_DESC";
+
+export type ExamStatus = "IN_PROGRESS" | "CLOSED";
+
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface UserUpdateOneWithoutLinksInput {
-  create?: UserCreateWithoutLinksInput;
-  update?: UserUpdateWithoutLinksDataInput;
-  upsert?: UserUpsertWithoutLinksInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
-  connect?: UserWhereUniqueInput;
+export type QuestionOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "type_ASC"
+  | "type_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "content_ASC"
+  | "content_DESC"
+  | "test_ASC"
+  | "test_DESC";
+
+export type QuestionSnapshotOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "questionId_ASC"
+  | "questionId_DESC"
+  | "type_ASC"
+  | "type_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "content_ASC"
+  | "content_DESC"
+  | "test_ASC"
+  | "test_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export interface SnapCommentUpsertWithWhereUniqueWithoutHistoryInput {
+  where: SnapCommentWhereUniqueInput;
+  update: SnapCommentUpdateWithoutHistoryDataInput;
+  create: SnapCommentCreateWithoutHistoryInput;
 }
 
-export type LinkWhereUniqueInput = AtLeastOne<{
+export type ExamWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
 
-export interface LinkUpdateManyWithoutPostedByInput {
-  create?: LinkCreateWithoutPostedByInput[] | LinkCreateWithoutPostedByInput;
-  delete?: LinkWhereUniqueInput[] | LinkWhereUniqueInput;
-  connect?: LinkWhereUniqueInput[] | LinkWhereUniqueInput;
-  disconnect?: LinkWhereUniqueInput[] | LinkWhereUniqueInput;
-  update?:
-    | LinkUpdateWithWhereUniqueWithoutPostedByInput[]
-    | LinkUpdateWithWhereUniqueWithoutPostedByInput;
-  upsert?:
-    | LinkUpsertWithWhereUniqueWithoutPostedByInput[]
-    | LinkUpsertWithWhereUniqueWithoutPostedByInput;
-  deleteMany?: LinkScalarWhereInput[] | LinkScalarWhereInput;
-  updateMany?:
-    | LinkUpdateManyWithWhereNestedInput[]
-    | LinkUpdateManyWithWhereNestedInput;
+export interface HistoryUpdateManyDataInput {
+  code?: String;
 }
 
-export interface UserCreateInput {
-  name: String;
-  email: String;
-  password: String;
-  links?: LinkCreateManyWithoutPostedByInput;
+export interface SnapCommentWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  author?: String;
+  author_not?: String;
+  author_in?: String[] | String;
+  author_not_in?: String[] | String;
+  author_lt?: String;
+  author_lte?: String;
+  author_gt?: String;
+  author_gte?: String;
+  author_contains?: String;
+  author_not_contains?: String;
+  author_starts_with?: String;
+  author_not_starts_with?: String;
+  author_ends_with?: String;
+  author_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  history?: HistoryWhereInput;
+  AND?: SnapCommentWhereInput[] | SnapCommentWhereInput;
+  OR?: SnapCommentWhereInput[] | SnapCommentWhereInput;
+  NOT?: SnapCommentWhereInput[] | SnapCommentWhereInput;
 }
 
-export interface UserUpdateInput {
+export interface QuestionSnapshotUpdateOneRequiredWithoutExamInput {
+  create?: QuestionSnapshotCreateWithoutExamInput;
+  update?: QuestionSnapshotUpdateWithoutExamDataInput;
+  upsert?: QuestionSnapshotUpsertWithoutExamInput;
+  connect?: QuestionSnapshotWhereUniqueInput;
+}
+
+export interface HistoryWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  code?: String;
+  code_not?: String;
+  code_in?: String[] | String;
+  code_not_in?: String[] | String;
+  code_lt?: String;
+  code_lte?: String;
+  code_gt?: String;
+  code_gte?: String;
+  code_contains?: String;
+  code_not_contains?: String;
+  code_starts_with?: String;
+  code_not_starts_with?: String;
+  code_ends_with?: String;
+  code_not_ends_with?: String;
+  exam?: ExamWhereInput;
+  snapComments_every?: SnapCommentWhereInput;
+  snapComments_some?: SnapCommentWhereInput;
+  snapComments_none?: SnapCommentWhereInput;
+  AND?: HistoryWhereInput[] | HistoryWhereInput;
+  OR?: HistoryWhereInput[] | HistoryWhereInput;
+  NOT?: HistoryWhereInput[] | HistoryWhereInput;
+}
+
+export interface InterviewUpdateWithoutExamsDataInput {
+  status?: InterviewStatus;
+  intervieweeName?: String;
+  description?: String;
+  host?: UserUpdateOneRequiredWithoutHostedInterviewsInput;
+  password?: String;
+}
+
+export interface ExamUpdateWithoutQuestionSnapshotDataInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  interview?: InterviewUpdateOneRequiredWithoutExamsInput;
+  summaries?: SummaryUpdateManyWithoutExamInput;
+  histories?: HistoryUpdateManyWithoutExamInput;
+}
+
+export interface UserUpdateOneRequiredWithoutHostedInterviewsInput {
+  create?: UserCreateWithoutHostedInterviewsInput;
+  update?: UserUpdateWithoutHostedInterviewsDataInput;
+  upsert?: UserUpsertWithoutHostedInterviewsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface QuestionSnapshotUpdateWithoutExamDataInput {
+  questionId?: String;
+  type?: QuestionType;
   name?: String;
+  content?: String;
+  test?: String;
+}
+
+export interface UserUpdateWithoutHostedInterviewsDataInput {
   email?: String;
   password?: String;
-  links?: LinkUpdateManyWithoutPostedByInput;
-}
-
-export interface UserUpsertWithoutLinksInput {
-  update: UserUpdateWithoutLinksDataInput;
-  create: UserCreateWithoutLinksInput;
+  name?: String;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -226,49 +688,767 @@ export interface UserSubscriptionWhereInput {
   NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
-export interface UserUpdateManyMutationInput {
-  name?: String;
-  email?: String;
+export interface UserUpsertWithoutHostedInterviewsInput {
+  update: UserUpdateWithoutHostedInterviewsDataInput;
+  create: UserCreateWithoutHostedInterviewsInput;
+}
+
+export interface SummarySubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: SummaryWhereInput;
+  AND?: SummarySubscriptionWhereInput[] | SummarySubscriptionWhereInput;
+  OR?: SummarySubscriptionWhereInput[] | SummarySubscriptionWhereInput;
+  NOT?: SummarySubscriptionWhereInput[] | SummarySubscriptionWhereInput;
+}
+
+export interface InterviewUpsertWithoutExamsInput {
+  update: InterviewUpdateWithoutExamsDataInput;
+  create: InterviewCreateWithoutExamsInput;
+}
+
+export interface QuestionSnapshotSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: QuestionSnapshotWhereInput;
+  AND?:
+    | QuestionSnapshotSubscriptionWhereInput[]
+    | QuestionSnapshotSubscriptionWhereInput;
+  OR?:
+    | QuestionSnapshotSubscriptionWhereInput[]
+    | QuestionSnapshotSubscriptionWhereInput;
+  NOT?:
+    | QuestionSnapshotSubscriptionWhereInput[]
+    | QuestionSnapshotSubscriptionWhereInput;
+}
+
+export interface SummaryUpdateManyWithoutExamInput {
+  create?: SummaryCreateWithoutExamInput[] | SummaryCreateWithoutExamInput;
+  delete?: SummaryWhereUniqueInput[] | SummaryWhereUniqueInput;
+  connect?: SummaryWhereUniqueInput[] | SummaryWhereUniqueInput;
+  disconnect?: SummaryWhereUniqueInput[] | SummaryWhereUniqueInput;
+  update?:
+    | SummaryUpdateWithWhereUniqueWithoutExamInput[]
+    | SummaryUpdateWithWhereUniqueWithoutExamInput;
+  upsert?:
+    | SummaryUpsertWithWhereUniqueWithoutExamInput[]
+    | SummaryUpsertWithWhereUniqueWithoutExamInput;
+  deleteMany?: SummaryScalarWhereInput[] | SummaryScalarWhereInput;
+  updateMany?:
+    | SummaryUpdateManyWithWhereNestedInput[]
+    | SummaryUpdateManyWithWhereNestedInput;
+}
+
+export interface InterviewSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: InterviewWhereInput;
+  AND?: InterviewSubscriptionWhereInput[] | InterviewSubscriptionWhereInput;
+  OR?: InterviewSubscriptionWhereInput[] | InterviewSubscriptionWhereInput;
+  NOT?: InterviewSubscriptionWhereInput[] | InterviewSubscriptionWhereInput;
+}
+
+export interface SummaryUpdateWithWhereUniqueWithoutExamInput {
+  where: SummaryWhereUniqueInput;
+  data: SummaryUpdateWithoutExamDataInput;
+}
+
+export interface ExamSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ExamWhereInput;
+  AND?: ExamSubscriptionWhereInput[] | ExamSubscriptionWhereInput;
+  OR?: ExamSubscriptionWhereInput[] | ExamSubscriptionWhereInput;
+  NOT?: ExamSubscriptionWhereInput[] | ExamSubscriptionWhereInput;
+}
+
+export interface SummaryUpdateWithoutExamDataInput {
+  author?: String;
+  content?: String;
+}
+
+export interface InterviewUpdateManyDataInput {
+  status?: InterviewStatus;
+  intervieweeName?: String;
+  description?: String;
   password?: String;
 }
 
-export interface LinkCreateInput {
-  description: String;
-  url: String;
-  postedBy?: UserCreateOneWithoutLinksInput;
+export interface SummaryUpsertWithWhereUniqueWithoutExamInput {
+  where: SummaryWhereUniqueInput;
+  update: SummaryUpdateWithoutExamDataInput;
+  create: SummaryCreateWithoutExamInput;
 }
 
-export interface LinkUpdateManyWithWhereNestedInput {
-  where: LinkScalarWhereInput;
-  data: LinkUpdateManyDataInput;
+export interface InterviewUpdateManyWithWhereNestedInput {
+  where: InterviewScalarWhereInput;
+  data: InterviewUpdateManyDataInput;
 }
 
-export interface UserCreateOneWithoutLinksInput {
-  create?: UserCreateWithoutLinksInput;
+export interface SummaryScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  author?: String;
+  author_not?: String;
+  author_in?: String[] | String;
+  author_not_in?: String[] | String;
+  author_lt?: String;
+  author_lte?: String;
+  author_gt?: String;
+  author_gte?: String;
+  author_contains?: String;
+  author_not_contains?: String;
+  author_starts_with?: String;
+  author_not_starts_with?: String;
+  author_ends_with?: String;
+  author_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  AND?: SummaryScalarWhereInput[] | SummaryScalarWhereInput;
+  OR?: SummaryScalarWhereInput[] | SummaryScalarWhereInput;
+  NOT?: SummaryScalarWhereInput[] | SummaryScalarWhereInput;
+}
+
+export interface InterviewUpsertWithWhereUniqueWithoutHostInput {
+  where: InterviewWhereUniqueInput;
+  update: InterviewUpdateWithoutHostDataInput;
+  create: InterviewCreateWithoutHostInput;
+}
+
+export interface SummaryUpdateManyWithWhereNestedInput {
+  where: SummaryScalarWhereInput;
+  data: SummaryUpdateManyDataInput;
+}
+
+export interface InterviewUpdateWithoutHostDataInput {
+  status?: InterviewStatus;
+  intervieweeName?: String;
+  description?: String;
+  password?: String;
+  exams?: ExamUpdateManyWithoutInterviewInput;
+}
+
+export interface SummaryUpdateManyDataInput {
+  author?: String;
+  content?: String;
+}
+
+export interface InterviewUpdateManyWithoutHostInput {
+  create?: InterviewCreateWithoutHostInput[] | InterviewCreateWithoutHostInput;
+  delete?: InterviewWhereUniqueInput[] | InterviewWhereUniqueInput;
+  connect?: InterviewWhereUniqueInput[] | InterviewWhereUniqueInput;
+  disconnect?: InterviewWhereUniqueInput[] | InterviewWhereUniqueInput;
+  update?:
+    | InterviewUpdateWithWhereUniqueWithoutHostInput[]
+    | InterviewUpdateWithWhereUniqueWithoutHostInput;
+  upsert?:
+    | InterviewUpsertWithWhereUniqueWithoutHostInput[]
+    | InterviewUpsertWithWhereUniqueWithoutHostInput;
+  deleteMany?: InterviewScalarWhereInput[] | InterviewScalarWhereInput;
+  updateMany?:
+    | InterviewUpdateManyWithWhereNestedInput[]
+    | InterviewUpdateManyWithWhereNestedInput;
+}
+
+export interface HistoryUpdateManyWithoutExamInput {
+  create?: HistoryCreateWithoutExamInput[] | HistoryCreateWithoutExamInput;
+  delete?: HistoryWhereUniqueInput[] | HistoryWhereUniqueInput;
+  connect?: HistoryWhereUniqueInput[] | HistoryWhereUniqueInput;
+  disconnect?: HistoryWhereUniqueInput[] | HistoryWhereUniqueInput;
+  update?:
+    | HistoryUpdateWithWhereUniqueWithoutExamInput[]
+    | HistoryUpdateWithWhereUniqueWithoutExamInput;
+  upsert?:
+    | HistoryUpsertWithWhereUniqueWithoutExamInput[]
+    | HistoryUpsertWithWhereUniqueWithoutExamInput;
+  deleteMany?: HistoryScalarWhereInput[] | HistoryScalarWhereInput;
+  updateMany?:
+    | HistoryUpdateManyWithWhereNestedInput[]
+    | HistoryUpdateManyWithWhereNestedInput;
+}
+
+export interface UserUpdateInput {
+  email?: String;
+  password?: String;
+  name?: String;
+  hostedInterviews?: InterviewUpdateManyWithoutHostInput;
+}
+
+export interface HistoryUpdateWithWhereUniqueWithoutExamInput {
+  where: HistoryWhereUniqueInput;
+  data: HistoryUpdateWithoutExamDataInput;
+}
+
+export interface InterviewCreateWithoutHostInput {
+  status?: InterviewStatus;
+  intervieweeName: String;
+  description?: String;
+  password?: String;
+  exams?: ExamCreateManyWithoutInterviewInput;
+}
+
+export interface HistoryUpdateWithoutExamDataInput {
+  code?: String;
+  snapComments?: SnapCommentUpdateManyWithoutHistoryInput;
+}
+
+export interface UserCreateInput {
+  email: String;
+  password: String;
+  name: String;
+  hostedInterviews?: InterviewCreateManyWithoutHostInput;
+}
+
+export interface SnapCommentUpdateManyWithoutHistoryInput {
+  create?:
+    | SnapCommentCreateWithoutHistoryInput[]
+    | SnapCommentCreateWithoutHistoryInput;
+  delete?: SnapCommentWhereUniqueInput[] | SnapCommentWhereUniqueInput;
+  connect?: SnapCommentWhereUniqueInput[] | SnapCommentWhereUniqueInput;
+  disconnect?: SnapCommentWhereUniqueInput[] | SnapCommentWhereUniqueInput;
+  update?:
+    | SnapCommentUpdateWithWhereUniqueWithoutHistoryInput[]
+    | SnapCommentUpdateWithWhereUniqueWithoutHistoryInput;
+  upsert?:
+    | SnapCommentUpsertWithWhereUniqueWithoutHistoryInput[]
+    | SnapCommentUpsertWithWhereUniqueWithoutHistoryInput;
+  deleteMany?: SnapCommentScalarWhereInput[] | SnapCommentScalarWhereInput;
+  updateMany?:
+    | SnapCommentUpdateManyWithWhereNestedInput[]
+    | SnapCommentUpdateManyWithWhereNestedInput;
+}
+
+export type QuestionSnapshotWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface SnapCommentUpdateWithWhereUniqueWithoutHistoryInput {
+  where: SnapCommentWhereUniqueInput;
+  data: SnapCommentUpdateWithoutHistoryDataInput;
+}
+
+export interface ExamUpdateWithoutSummariesDataInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  interview?: InterviewUpdateOneRequiredWithoutExamsInput;
+  histories?: HistoryUpdateManyWithoutExamInput;
+  questionSnapshot?: QuestionSnapshotUpdateOneRequiredWithoutExamInput;
+}
+
+export interface SnapCommentUpdateWithoutHistoryDataInput {
+  author?: String;
+  content?: String;
+}
+
+export interface SummaryUpdateInput {
+  author?: String;
+  content?: String;
+  exam?: ExamUpdateOneRequiredWithoutSummariesInput;
+}
+
+export interface SnapCommentCreateInput {
+  author: String;
+  content: String;
+  history: HistoryCreateOneWithoutSnapCommentsInput;
+}
+
+export interface ExamCreateWithoutSummariesInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  interview: InterviewCreateOneWithoutExamsInput;
+  histories?: HistoryCreateManyWithoutExamInput;
+  questionSnapshot: QuestionSnapshotCreateOneWithoutExamInput;
+}
+
+export interface SnapCommentScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  author?: String;
+  author_not?: String;
+  author_in?: String[] | String;
+  author_not_in?: String[] | String;
+  author_lt?: String;
+  author_lte?: String;
+  author_gt?: String;
+  author_gte?: String;
+  author_contains?: String;
+  author_not_contains?: String;
+  author_starts_with?: String;
+  author_not_starts_with?: String;
+  author_ends_with?: String;
+  author_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  AND?: SnapCommentScalarWhereInput[] | SnapCommentScalarWhereInput;
+  OR?: SnapCommentScalarWhereInput[] | SnapCommentScalarWhereInput;
+  NOT?: SnapCommentScalarWhereInput[] | SnapCommentScalarWhereInput;
+}
+
+export interface SummaryCreateInput {
+  author: String;
+  content: String;
+  exam: ExamCreateOneWithoutSummariesInput;
+}
+
+export interface SnapCommentUpdateManyWithWhereNestedInput {
+  where: SnapCommentScalarWhereInput;
+  data: SnapCommentUpdateManyDataInput;
+}
+
+export interface SnapCommentUpdateManyMutationInput {
+  author?: String;
+  content?: String;
+}
+
+export interface SnapCommentUpdateManyDataInput {
+  author?: String;
+  content?: String;
+}
+
+export interface HistoryUpdateWithoutSnapCommentsDataInput {
+  code?: String;
+  exam?: ExamUpdateOneRequiredWithoutHistoriesInput;
+}
+
+export interface HistoryUpsertWithWhereUniqueWithoutExamInput {
+  where: HistoryWhereUniqueInput;
+  update: HistoryUpdateWithoutExamDataInput;
+  create: HistoryCreateWithoutExamInput;
+}
+
+export interface HistoryUpdateOneRequiredWithoutSnapCommentsInput {
+  create?: HistoryCreateWithoutSnapCommentsInput;
+  update?: HistoryUpdateWithoutSnapCommentsDataInput;
+  upsert?: HistoryUpsertWithoutSnapCommentsInput;
+  connect?: HistoryWhereUniqueInput;
+}
+
+export interface HistoryScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  code?: String;
+  code_not?: String;
+  code_in?: String[] | String;
+  code_not_in?: String[] | String;
+  code_lt?: String;
+  code_lte?: String;
+  code_gt?: String;
+  code_gte?: String;
+  code_contains?: String;
+  code_not_contains?: String;
+  code_starts_with?: String;
+  code_not_starts_with?: String;
+  code_ends_with?: String;
+  code_not_ends_with?: String;
+  AND?: HistoryScalarWhereInput[] | HistoryScalarWhereInput;
+  OR?: HistoryScalarWhereInput[] | HistoryScalarWhereInput;
+  NOT?: HistoryScalarWhereInput[] | HistoryScalarWhereInput;
+}
+
+export interface HistoryCreateWithoutSnapCommentsInput {
+  code: String;
+  exam: ExamCreateOneWithoutHistoriesInput;
+}
+
+export interface HistoryUpdateManyWithWhereNestedInput {
+  where: HistoryScalarWhereInput;
+  data: HistoryUpdateManyDataInput;
+}
+
+export interface InterviewCreateOneWithoutExamsInput {
+  create?: InterviewCreateWithoutExamsInput;
+  connect?: InterviewWhereUniqueInput;
+}
+
+export interface QuestionSnapshotWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  questionId?: String;
+  questionId_not?: String;
+  questionId_in?: String[] | String;
+  questionId_not_in?: String[] | String;
+  questionId_lt?: String;
+  questionId_lte?: String;
+  questionId_gt?: String;
+  questionId_gte?: String;
+  questionId_contains?: String;
+  questionId_not_contains?: String;
+  questionId_starts_with?: String;
+  questionId_not_starts_with?: String;
+  questionId_ends_with?: String;
+  questionId_not_ends_with?: String;
+  type?: QuestionType;
+  type_not?: QuestionType;
+  type_in?: QuestionType[] | QuestionType;
+  type_not_in?: QuestionType[] | QuestionType;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  test?: String;
+  test_not?: String;
+  test_in?: String[] | String;
+  test_not_in?: String[] | String;
+  test_lt?: String;
+  test_lte?: String;
+  test_gt?: String;
+  test_gte?: String;
+  test_contains?: String;
+  test_not_contains?: String;
+  test_starts_with?: String;
+  test_not_starts_with?: String;
+  test_ends_with?: String;
+  test_not_ends_with?: String;
+  exam?: ExamWhereInput;
+  AND?: QuestionSnapshotWhereInput[] | QuestionSnapshotWhereInput;
+  OR?: QuestionSnapshotWhereInput[] | QuestionSnapshotWhereInput;
+  NOT?: QuestionSnapshotWhereInput[] | QuestionSnapshotWhereInput;
+}
+
+export interface UserCreateOneWithoutHostedInterviewsInput {
+  create?: UserCreateWithoutHostedInterviewsInput;
   connect?: UserWhereUniqueInput;
 }
 
-export interface LinkUpsertWithWhereUniqueWithoutPostedByInput {
-  where: LinkWhereUniqueInput;
-  update: LinkUpdateWithoutPostedByDataInput;
-  create: LinkCreateWithoutPostedByInput;
+export interface SummaryWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  author?: String;
+  author_not?: String;
+  author_in?: String[] | String;
+  author_not_in?: String[] | String;
+  author_lt?: String;
+  author_lte?: String;
+  author_gt?: String;
+  author_gte?: String;
+  author_contains?: String;
+  author_not_contains?: String;
+  author_starts_with?: String;
+  author_not_starts_with?: String;
+  author_ends_with?: String;
+  author_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  exam?: ExamWhereInput;
+  AND?: SummaryWhereInput[] | SummaryWhereInput;
+  OR?: SummaryWhereInput[] | SummaryWhereInput;
+  NOT?: SummaryWhereInput[] | SummaryWhereInput;
 }
 
-export interface UserCreateWithoutLinksInput {
-  name: String;
-  email: String;
-  password: String;
+export interface SummaryCreateManyWithoutExamInput {
+  create?: SummaryCreateWithoutExamInput[] | SummaryCreateWithoutExamInput;
+  connect?: SummaryWhereUniqueInput[] | SummaryWhereUniqueInput;
 }
 
-export interface LinkUpdateWithoutPostedByDataInput {
-  description?: String;
-  url?: String;
+export interface ExamWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  status?: ExamStatus;
+  status_not?: ExamStatus;
+  status_in?: ExamStatus[] | ExamStatus;
+  status_not_in?: ExamStatus[] | ExamStatus;
+  syncCode?: String;
+  syncCode_not?: String;
+  syncCode_in?: String[] | String;
+  syncCode_not_in?: String[] | String;
+  syncCode_lt?: String;
+  syncCode_lte?: String;
+  syncCode_gt?: String;
+  syncCode_gte?: String;
+  syncCode_contains?: String;
+  syncCode_not_contains?: String;
+  syncCode_starts_with?: String;
+  syncCode_not_starts_with?: String;
+  syncCode_ends_with?: String;
+  syncCode_not_ends_with?: String;
+  interview?: InterviewWhereInput;
+  summaries_every?: SummaryWhereInput;
+  summaries_some?: SummaryWhereInput;
+  summaries_none?: SummaryWhereInput;
+  histories_every?: HistoryWhereInput;
+  histories_some?: HistoryWhereInput;
+  histories_none?: HistoryWhereInput;
+  questionSnapshot?: QuestionSnapshotWhereInput;
+  AND?: ExamWhereInput[] | ExamWhereInput;
+  OR?: ExamWhereInput[] | ExamWhereInput;
+  NOT?: ExamWhereInput[] | ExamWhereInput;
 }
 
-export interface LinkUpdateInput {
-  description?: String;
-  url?: String;
-  postedBy?: UserUpdateOneWithoutLinksInput;
+export interface HistoryCreateManyWithoutExamInput {
+  create?: HistoryCreateWithoutExamInput[] | HistoryCreateWithoutExamInput;
+  connect?: HistoryWhereUniqueInput[] | HistoryWhereUniqueInput;
+}
+
+export interface QuestionSnapshotUpsertWithoutExamInput {
+  update: QuestionSnapshotUpdateWithoutExamDataInput;
+  create: QuestionSnapshotCreateWithoutExamInput;
+}
+
+export interface SnapCommentCreateManyWithoutHistoryInput {
+  create?:
+    | SnapCommentCreateWithoutHistoryInput[]
+    | SnapCommentCreateWithoutHistoryInput;
+  connect?: SnapCommentWhereUniqueInput[] | SnapCommentWhereUniqueInput;
+}
+
+export interface ExamUpdateManyMutationInput {
+  status?: ExamStatus;
+  syncCode?: String;
+}
+
+export interface QuestionSnapshotCreateOneWithoutExamInput {
+  create?: QuestionSnapshotCreateWithoutExamInput;
+  connect?: QuestionSnapshotWhereUniqueInput;
+}
+
+export interface QuestionSnapshotUpdateManyMutationInput {
+  questionId?: String;
+  type?: QuestionType;
+  name?: String;
+  content?: String;
+  test?: String;
+}
+
+export interface ExamUpdateInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  interview?: InterviewUpdateOneRequiredWithoutExamsInput;
+  summaries?: SummaryUpdateManyWithoutExamInput;
+  histories?: HistoryUpdateManyWithoutExamInput;
+  questionSnapshot?: QuestionSnapshotUpdateOneRequiredWithoutExamInput;
+}
+
+export interface ExamUpsertWithoutQuestionSnapshotInput {
+  update: ExamUpdateWithoutQuestionSnapshotDataInput;
+  create: ExamCreateWithoutQuestionSnapshotInput;
 }
 
 export interface UserWhereInput {
@@ -286,20 +1466,6 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
   email?: String;
   email_not?: String;
   email_in?: String[] | String;
@@ -328,167 +1494,141 @@ export interface UserWhereInput {
   password_not_starts_with?: String;
   password_ends_with?: String;
   password_not_ends_with?: String;
-  links_every?: LinkWhereInput;
-  links_some?: LinkWhereInput;
-  links_none?: LinkWhereInput;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  hostedInterviews_every?: InterviewWhereInput;
+  hostedInterviews_some?: InterviewWhereInput;
+  hostedInterviews_none?: InterviewWhereInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
-export interface LinkCreateWithoutPostedByInput {
-  description: String;
-  url: String;
+export interface HistoryCreateInput {
+  code: String;
+  exam: ExamCreateOneWithoutHistoriesInput;
+  snapComments?: SnapCommentCreateManyWithoutHistoryInput;
 }
 
-export interface LinkUpdateManyDataInput {
-  description?: String;
-  url?: String;
-}
-
-export interface LinkCreateManyWithoutPostedByInput {
-  create?: LinkCreateWithoutPostedByInput[] | LinkCreateWithoutPostedByInput;
-  connect?: LinkWhereUniqueInput[] | LinkWhereUniqueInput;
-}
-
-export interface LinkUpdateManyMutationInput {
-  description?: String;
-  url?: String;
-}
-
-export interface LinkWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  description?: String;
-  description_not?: String;
-  description_in?: String[] | String;
-  description_not_in?: String[] | String;
-  description_lt?: String;
-  description_lte?: String;
-  description_gt?: String;
-  description_gte?: String;
-  description_contains?: String;
-  description_not_contains?: String;
-  description_starts_with?: String;
-  description_not_starts_with?: String;
-  description_ends_with?: String;
-  description_not_ends_with?: String;
-  url?: String;
-  url_not?: String;
-  url_in?: String[] | String;
-  url_not_in?: String[] | String;
-  url_lt?: String;
-  url_lte?: String;
-  url_gt?: String;
-  url_gte?: String;
-  url_contains?: String;
-  url_not_contains?: String;
-  url_starts_with?: String;
-  url_not_starts_with?: String;
-  url_ends_with?: String;
-  url_not_ends_with?: String;
-  postedBy?: UserWhereInput;
-  AND?: LinkWhereInput[] | LinkWhereInput;
-  OR?: LinkWhereInput[] | LinkWhereInput;
-  NOT?: LinkWhereInput[] | LinkWhereInput;
-}
-
-export interface UserUpdateWithoutLinksDataInput {
-  name?: String;
-  email?: String;
-  password?: String;
-}
-
-export interface LinkScalarWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  description?: String;
-  description_not?: String;
-  description_in?: String[] | String;
-  description_not_in?: String[] | String;
-  description_lt?: String;
-  description_lte?: String;
-  description_gt?: String;
-  description_gte?: String;
-  description_contains?: String;
-  description_not_contains?: String;
-  description_starts_with?: String;
-  description_not_starts_with?: String;
-  description_ends_with?: String;
-  description_not_ends_with?: String;
-  url?: String;
-  url_not?: String;
-  url_in?: String[] | String;
-  url_not_in?: String[] | String;
-  url_lt?: String;
-  url_lte?: String;
-  url_gt?: String;
-  url_gte?: String;
-  url_contains?: String;
-  url_not_contains?: String;
-  url_starts_with?: String;
-  url_not_starts_with?: String;
-  url_ends_with?: String;
-  url_not_ends_with?: String;
-  AND?: LinkScalarWhereInput[] | LinkScalarWhereInput;
-  OR?: LinkScalarWhereInput[] | LinkScalarWhereInput;
-  NOT?: LinkScalarWhereInput[] | LinkScalarWhereInput;
-}
-
-export interface LinkSubscriptionWhereInput {
+export interface SnapCommentSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: LinkWhereInput;
-  AND?: LinkSubscriptionWhereInput[] | LinkSubscriptionWhereInput;
-  OR?: LinkSubscriptionWhereInput[] | LinkSubscriptionWhereInput;
-  NOT?: LinkSubscriptionWhereInput[] | LinkSubscriptionWhereInput;
+  node?: SnapCommentWhereInput;
+  AND?: SnapCommentSubscriptionWhereInput[] | SnapCommentSubscriptionWhereInput;
+  OR?: SnapCommentSubscriptionWhereInput[] | SnapCommentSubscriptionWhereInput;
+  NOT?: SnapCommentSubscriptionWhereInput[] | SnapCommentSubscriptionWhereInput;
 }
 
-export interface LinkUpdateWithWhereUniqueWithoutPostedByInput {
-  where: LinkWhereUniqueInput;
-  data: LinkUpdateWithoutPostedByDataInput;
+export interface ExamCreateOneWithoutHistoriesInput {
+  create?: ExamCreateWithoutHistoriesInput;
+  connect?: ExamWhereUniqueInput;
+}
+
+export interface HistorySubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: HistoryWhereInput;
+  AND?: HistorySubscriptionWhereInput[] | HistorySubscriptionWhereInput;
+  OR?: HistorySubscriptionWhereInput[] | HistorySubscriptionWhereInput;
+  NOT?: HistorySubscriptionWhereInput[] | HistorySubscriptionWhereInput;
+}
+
+export interface ExamCreateWithoutHistoriesInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  interview: InterviewCreateOneWithoutExamsInput;
+  summaries?: SummaryCreateManyWithoutExamInput;
+  questionSnapshot: QuestionSnapshotCreateOneWithoutExamInput;
+}
+
+export type HistoryWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface HistoryUpdateInput {
+  code?: String;
+  exam?: ExamUpdateOneRequiredWithoutHistoriesInput;
+  snapComments?: SnapCommentUpdateManyWithoutHistoryInput;
+}
+
+export type InterviewWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ExamUpdateOneRequiredWithoutHistoriesInput {
+  create?: ExamCreateWithoutHistoriesInput;
+  update?: ExamUpdateWithoutHistoriesDataInput;
+  upsert?: ExamUpsertWithoutHistoriesInput;
+  connect?: ExamWhereUniqueInput;
+}
+
+export type QuestionWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ExamUpdateWithoutHistoriesDataInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  interview?: InterviewUpdateOneRequiredWithoutExamsInput;
+  summaries?: SummaryUpdateManyWithoutExamInput;
+  questionSnapshot?: QuestionSnapshotUpdateOneRequiredWithoutExamInput;
+}
+
+export interface InterviewCreateManyWithoutHostInput {
+  create?: InterviewCreateWithoutHostInput[] | InterviewCreateWithoutHostInput;
+  connect?: InterviewWhereUniqueInput[] | InterviewWhereUniqueInput;
+}
+
+export interface ExamUpsertWithoutHistoriesInput {
+  update: ExamUpdateWithoutHistoriesDataInput;
+  create: ExamCreateWithoutHistoriesInput;
+}
+
+export interface ExamUpsertWithoutSummariesInput {
+  update: ExamUpdateWithoutSummariesDataInput;
+  create: ExamCreateWithoutSummariesInput;
+}
+
+export interface HistoryUpdateManyMutationInput {
+  code?: String;
+}
+
+export type SnapCommentWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface InterviewCreateInput {
+  status?: InterviewStatus;
+  intervieweeName: String;
+  description?: String;
+  host: UserCreateOneWithoutHostedInterviewsInput;
+  password?: String;
+  exams?: ExamCreateManyWithoutInterviewInput;
+}
+
+export type SummaryWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ExamCreateManyWithoutInterviewInput {
+  create?: ExamCreateWithoutInterviewInput[] | ExamCreateWithoutInterviewInput;
+  connect?: ExamWhereUniqueInput[] | ExamWhereUniqueInput;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -496,132 +1636,698 @@ export type UserWhereUniqueInput = AtLeastOne<{
   email?: String;
 }>;
 
+export interface ExamCreateWithoutInterviewInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  summaries?: SummaryCreateManyWithoutExamInput;
+  histories?: HistoryCreateManyWithoutExamInput;
+  questionSnapshot: QuestionSnapshotCreateOneWithoutExamInput;
+}
+
+export interface HistoryCreateOneWithoutSnapCommentsInput {
+  create?: HistoryCreateWithoutSnapCommentsInput;
+  connect?: HistoryWhereUniqueInput;
+}
+
+export interface InterviewUpdateInput {
+  status?: InterviewStatus;
+  intervieweeName?: String;
+  description?: String;
+  host?: UserUpdateOneRequiredWithoutHostedInterviewsInput;
+  password?: String;
+  exams?: ExamUpdateManyWithoutInterviewInput;
+}
+
+export interface InterviewCreateWithoutExamsInput {
+  status?: InterviewStatus;
+  intervieweeName: String;
+  description?: String;
+  host: UserCreateOneWithoutHostedInterviewsInput;
+  password?: String;
+}
+
+export interface ExamUpdateManyWithoutInterviewInput {
+  create?: ExamCreateWithoutInterviewInput[] | ExamCreateWithoutInterviewInput;
+  delete?: ExamWhereUniqueInput[] | ExamWhereUniqueInput;
+  connect?: ExamWhereUniqueInput[] | ExamWhereUniqueInput;
+  disconnect?: ExamWhereUniqueInput[] | ExamWhereUniqueInput;
+  update?:
+    | ExamUpdateWithWhereUniqueWithoutInterviewInput[]
+    | ExamUpdateWithWhereUniqueWithoutInterviewInput;
+  upsert?:
+    | ExamUpsertWithWhereUniqueWithoutInterviewInput[]
+    | ExamUpsertWithWhereUniqueWithoutInterviewInput;
+  deleteMany?: ExamScalarWhereInput[] | ExamScalarWhereInput;
+  updateMany?:
+    | ExamUpdateManyWithWhereNestedInput[]
+    | ExamUpdateManyWithWhereNestedInput;
+}
+
+export interface SummaryCreateWithoutExamInput {
+  author: String;
+  content: String;
+}
+
+export interface ExamUpdateWithWhereUniqueWithoutInterviewInput {
+  where: ExamWhereUniqueInput;
+  data: ExamUpdateWithoutInterviewDataInput;
+}
+
+export interface SnapCommentCreateWithoutHistoryInput {
+  author: String;
+  content: String;
+}
+
+export interface ExamUpdateWithoutInterviewDataInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  summaries?: SummaryUpdateManyWithoutExamInput;
+  histories?: HistoryUpdateManyWithoutExamInput;
+  questionSnapshot?: QuestionSnapshotUpdateOneRequiredWithoutExamInput;
+}
+
+export interface InterviewUpdateOneRequiredWithoutExamsInput {
+  create?: InterviewCreateWithoutExamsInput;
+  update?: InterviewUpdateWithoutExamsDataInput;
+  upsert?: InterviewUpsertWithoutExamsInput;
+  connect?: InterviewWhereUniqueInput;
+}
+
+export interface ExamUpsertWithWhereUniqueWithoutInterviewInput {
+  where: ExamWhereUniqueInput;
+  update: ExamUpdateWithoutInterviewDataInput;
+  create: ExamCreateWithoutInterviewInput;
+}
+
+export interface QuestionSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: QuestionWhereInput;
+  AND?: QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput;
+  OR?: QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput;
+  NOT?: QuestionSubscriptionWhereInput[] | QuestionSubscriptionWhereInput;
+}
+
+export interface ExamScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  status?: ExamStatus;
+  status_not?: ExamStatus;
+  status_in?: ExamStatus[] | ExamStatus;
+  status_not_in?: ExamStatus[] | ExamStatus;
+  syncCode?: String;
+  syncCode_not?: String;
+  syncCode_in?: String[] | String;
+  syncCode_not_in?: String[] | String;
+  syncCode_lt?: String;
+  syncCode_lte?: String;
+  syncCode_gt?: String;
+  syncCode_gte?: String;
+  syncCode_contains?: String;
+  syncCode_not_contains?: String;
+  syncCode_starts_with?: String;
+  syncCode_not_starts_with?: String;
+  syncCode_ends_with?: String;
+  syncCode_not_ends_with?: String;
+  AND?: ExamScalarWhereInput[] | ExamScalarWhereInput;
+  OR?: ExamScalarWhereInput[] | ExamScalarWhereInput;
+  NOT?: ExamScalarWhereInput[] | ExamScalarWhereInput;
+}
+
+export interface InterviewScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  status?: InterviewStatus;
+  status_not?: InterviewStatus;
+  status_in?: InterviewStatus[] | InterviewStatus;
+  status_not_in?: InterviewStatus[] | InterviewStatus;
+  intervieweeName?: String;
+  intervieweeName_not?: String;
+  intervieweeName_in?: String[] | String;
+  intervieweeName_not_in?: String[] | String;
+  intervieweeName_lt?: String;
+  intervieweeName_lte?: String;
+  intervieweeName_gt?: String;
+  intervieweeName_gte?: String;
+  intervieweeName_contains?: String;
+  intervieweeName_not_contains?: String;
+  intervieweeName_starts_with?: String;
+  intervieweeName_not_starts_with?: String;
+  intervieweeName_ends_with?: String;
+  intervieweeName_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  AND?: InterviewScalarWhereInput[] | InterviewScalarWhereInput;
+  OR?: InterviewScalarWhereInput[] | InterviewScalarWhereInput;
+  NOT?: InterviewScalarWhereInput[] | InterviewScalarWhereInput;
+}
+
+export interface ExamUpdateManyWithWhereNestedInput {
+  where: ExamScalarWhereInput;
+  data: ExamUpdateManyDataInput;
+}
+
+export interface QuestionWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  type?: QuestionType;
+  type_not?: QuestionType;
+  type_in?: QuestionType[] | QuestionType;
+  type_not_in?: QuestionType[] | QuestionType;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  content?: String;
+  content_not?: String;
+  content_in?: String[] | String;
+  content_not_in?: String[] | String;
+  content_lt?: String;
+  content_lte?: String;
+  content_gt?: String;
+  content_gte?: String;
+  content_contains?: String;
+  content_not_contains?: String;
+  content_starts_with?: String;
+  content_not_starts_with?: String;
+  content_ends_with?: String;
+  content_not_ends_with?: String;
+  test?: String;
+  test_not?: String;
+  test_in?: String[] | String;
+  test_not_in?: String[] | String;
+  test_lt?: String;
+  test_lte?: String;
+  test_gt?: String;
+  test_gte?: String;
+  test_contains?: String;
+  test_not_contains?: String;
+  test_starts_with?: String;
+  test_not_starts_with?: String;
+  test_ends_with?: String;
+  test_not_ends_with?: String;
+  AND?: QuestionWhereInput[] | QuestionWhereInput;
+  OR?: QuestionWhereInput[] | QuestionWhereInput;
+  NOT?: QuestionWhereInput[] | QuestionWhereInput;
+}
+
+export interface ExamUpdateManyDataInput {
+  status?: ExamStatus;
+  syncCode?: String;
+}
+
+export interface ExamUpdateOneRequiredWithoutSummariesInput {
+  create?: ExamCreateWithoutSummariesInput;
+  update?: ExamUpdateWithoutSummariesDataInput;
+  upsert?: ExamUpsertWithoutSummariesInput;
+  connect?: ExamWhereUniqueInput;
+}
+
+export interface InterviewUpdateManyMutationInput {
+  status?: InterviewStatus;
+  intervieweeName?: String;
+  description?: String;
+  password?: String;
+}
+
+export interface HistoryUpsertWithoutSnapCommentsInput {
+  update: HistoryUpdateWithoutSnapCommentsDataInput;
+  create: HistoryCreateWithoutSnapCommentsInput;
+}
+
+export interface QuestionCreateInput {
+  type: QuestionType;
+  name: String;
+  content: String;
+  test?: String;
+  tags?: QuestionCreatetagsInput;
+}
+
+export interface ExamCreateInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  interview: InterviewCreateOneWithoutExamsInput;
+  summaries?: SummaryCreateManyWithoutExamInput;
+  histories?: HistoryCreateManyWithoutExamInput;
+  questionSnapshot: QuestionSnapshotCreateOneWithoutExamInput;
+}
+
+export interface QuestionCreatetagsInput {
+  set?: String[] | String;
+}
+
+export interface HistoryCreateWithoutExamInput {
+  code: String;
+  snapComments?: SnapCommentCreateManyWithoutHistoryInput;
+}
+
+export interface QuestionUpdateInput {
+  type?: QuestionType;
+  name?: String;
+  content?: String;
+  test?: String;
+  tags?: QuestionUpdatetagsInput;
+}
+
+export interface InterviewWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  status?: InterviewStatus;
+  status_not?: InterviewStatus;
+  status_in?: InterviewStatus[] | InterviewStatus;
+  status_not_in?: InterviewStatus[] | InterviewStatus;
+  intervieweeName?: String;
+  intervieweeName_not?: String;
+  intervieweeName_in?: String[] | String;
+  intervieweeName_not_in?: String[] | String;
+  intervieweeName_lt?: String;
+  intervieweeName_lte?: String;
+  intervieweeName_gt?: String;
+  intervieweeName_gte?: String;
+  intervieweeName_contains?: String;
+  intervieweeName_not_contains?: String;
+  intervieweeName_starts_with?: String;
+  intervieweeName_not_starts_with?: String;
+  intervieweeName_ends_with?: String;
+  intervieweeName_not_ends_with?: String;
+  description?: String;
+  description_not?: String;
+  description_in?: String[] | String;
+  description_not_in?: String[] | String;
+  description_lt?: String;
+  description_lte?: String;
+  description_gt?: String;
+  description_gte?: String;
+  description_contains?: String;
+  description_not_contains?: String;
+  description_starts_with?: String;
+  description_not_starts_with?: String;
+  description_ends_with?: String;
+  description_not_ends_with?: String;
+  host?: UserWhereInput;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  exams_every?: ExamWhereInput;
+  exams_some?: ExamWhereInput;
+  exams_none?: ExamWhereInput;
+  AND?: InterviewWhereInput[] | InterviewWhereInput;
+  OR?: InterviewWhereInput[] | InterviewWhereInput;
+  NOT?: InterviewWhereInput[] | InterviewWhereInput;
+}
+
+export interface QuestionUpdatetagsInput {
+  set?: String[] | String;
+}
+
+export interface InterviewUpdateWithWhereUniqueWithoutHostInput {
+  where: InterviewWhereUniqueInput;
+  data: InterviewUpdateWithoutHostDataInput;
+}
+
+export interface QuestionUpdateManyMutationInput {
+  type?: QuestionType;
+  name?: String;
+  content?: String;
+  test?: String;
+  tags?: QuestionUpdatetagsInput;
+}
+
+export interface ExamCreateOneWithoutSummariesInput {
+  create?: ExamCreateWithoutSummariesInput;
+  connect?: ExamWhereUniqueInput;
+}
+
+export interface QuestionSnapshotCreateInput {
+  questionId: String;
+  type: QuestionType;
+  name: String;
+  content: String;
+  test?: String;
+  exam: ExamCreateOneWithoutQuestionSnapshotInput;
+}
+
+export interface UserCreateWithoutHostedInterviewsInput {
+  email: String;
+  password: String;
+  name: String;
+}
+
+export interface ExamUpdateOneRequiredWithoutQuestionSnapshotInput {
+  create?: ExamCreateWithoutQuestionSnapshotInput;
+  update?: ExamUpdateWithoutQuestionSnapshotDataInput;
+  upsert?: ExamUpsertWithoutQuestionSnapshotInput;
+  connect?: ExamWhereUniqueInput;
+}
+
+export interface QuestionSnapshotUpdateInput {
+  questionId?: String;
+  type?: QuestionType;
+  name?: String;
+  content?: String;
+  test?: String;
+  exam?: ExamUpdateOneRequiredWithoutQuestionSnapshotInput;
+}
+
+export interface ExamCreateWithoutQuestionSnapshotInput {
+  status?: ExamStatus;
+  syncCode?: String;
+  interview: InterviewCreateOneWithoutExamsInput;
+  summaries?: SummaryCreateManyWithoutExamInput;
+  histories?: HistoryCreateManyWithoutExamInput;
+}
+
+export interface ExamCreateOneWithoutQuestionSnapshotInput {
+  create?: ExamCreateWithoutQuestionSnapshotInput;
+  connect?: ExamWhereUniqueInput;
+}
+
+export interface QuestionSnapshotCreateWithoutExamInput {
+  questionId: String;
+  type: QuestionType;
+  name: String;
+  content: String;
+  test?: String;
+}
+
+export interface SnapCommentUpdateInput {
+  author?: String;
+  content?: String;
+  history?: HistoryUpdateOneRequiredWithoutSnapCommentsInput;
+}
+
+export interface SummaryUpdateManyMutationInput {
+  author?: String;
+  content?: String;
+}
+
+export interface UserUpdateManyMutationInput {
+  email?: String;
+  password?: String;
+  name?: String;
+}
+
 export interface NodeNode {
   id: ID_Output;
 }
 
 export interface UserPreviousValues {
   id: ID_Output;
-  name: String;
   email: String;
   password: String;
+  name: String;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  name: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateLink {
+export interface AggregateHistory {
   count: Int;
 }
 
-export interface AggregateLinkPromise
-  extends Promise<AggregateLink>,
+export interface AggregateHistoryPromise
+  extends Promise<AggregateHistory>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateLinkSubscription
-  extends Promise<AsyncIterator<AggregateLink>>,
+export interface AggregateHistorySubscription
+  extends Promise<AsyncIterator<AggregateHistory>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface Link {
+export interface History {
   id: ID_Output;
   createdAt: DateTimeOutput;
-  description: String;
-  url: String;
+  updatedAt: DateTimeOutput;
+  code: String;
 }
 
-export interface LinkPromise extends Promise<Link>, Fragmentable {
+export interface HistoryPromise extends Promise<History>, Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
-  description: () => Promise<String>;
-  url: () => Promise<String>;
-  postedBy: <T = UserPromise>() => T;
+  updatedAt: () => Promise<DateTimeOutput>;
+  code: () => Promise<String>;
+  exam: <T = ExamPromise>() => T;
+  snapComments: <T = FragmentableArray<SnapComment>>(args?: {
+    where?: SnapCommentWhereInput;
+    orderBy?: SnapCommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
-export interface LinkSubscription
-  extends Promise<AsyncIterator<Link>>,
+export interface HistorySubscription
+  extends Promise<AsyncIterator<History>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  description: () => Promise<AsyncIterator<String>>;
-  url: () => Promise<AsyncIterator<String>>;
-  postedBy: <T = UserSubscription>() => T;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  code: () => Promise<AsyncIterator<String>>;
+  exam: <T = ExamSubscription>() => T;
+  snapComments: <T = Promise<AsyncIterator<SnapCommentSubscription>>>(args?: {
+    where?: SnapCommentWhereInput;
+    orderBy?: SnapCommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
-export interface LinkEdge {
-  node: Link;
+export interface HistoryEdge {
+  node: History;
   cursor: String;
 }
 
-export interface LinkEdgePromise extends Promise<LinkEdge>, Fragmentable {
-  node: <T = LinkPromise>() => T;
+export interface HistoryEdgePromise extends Promise<HistoryEdge>, Fragmentable {
+  node: <T = HistoryPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface LinkEdgeSubscription
-  extends Promise<AsyncIterator<LinkEdge>>,
+export interface HistoryEdgeSubscription
+  extends Promise<AsyncIterator<HistoryEdge>>,
     Fragmentable {
-  node: <T = LinkSubscription>() => T;
+  node: <T = HistorySubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface User {
-  id: ID_Output;
-  name: String;
-  email: String;
-  password: String;
+export interface HistoryConnection {
+  pageInfo: PageInfo;
+  edges: HistoryEdge[];
 }
 
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  links: <T = FragmentableArray<Link>>(args?: {
-    where?: LinkWhereInput;
-    orderBy?: LinkOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
+export interface HistoryConnectionPromise
+  extends Promise<HistoryConnection>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  links: <T = Promise<AsyncIterator<LinkSubscription>>>(args?: {
-    where?: LinkWhereInput;
-    orderBy?: LinkOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<HistoryEdge>>() => T;
+  aggregate: <T = AggregateHistoryPromise>() => T;
+}
+
+export interface HistoryConnectionSubscription
+  extends Promise<AsyncIterator<HistoryConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<HistoryEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateHistorySubscription>() => T;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface AggregateUser {
@@ -640,50 +2346,295 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface LinkSubscriptionPayload {
-  mutation: MutationType;
-  node: Link;
-  updatedFields: String[];
-  previousValues: LinkPreviousValues;
+export interface AggregateExam {
+  count: Int;
 }
 
-export interface LinkSubscriptionPayloadPromise
-  extends Promise<LinkSubscriptionPayload>,
+export interface AggregateExamPromise
+  extends Promise<AggregateExam>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = LinkPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = LinkPreviousValuesPromise>() => T;
+  count: () => Promise<Int>;
 }
 
-export interface LinkSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<LinkSubscriptionPayload>>,
+export interface AggregateExamSubscription
+  extends Promise<AsyncIterator<AggregateExam>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = LinkSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = LinkPreviousValuesSubscription>() => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface LinkConnection {
+export interface UserConnection {
   pageInfo: PageInfo;
-  edges: LinkEdge[];
+  edges: UserEdge[];
 }
 
-export interface LinkConnectionPromise
-  extends Promise<LinkConnection>,
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<LinkEdge>>() => T;
-  aggregate: <T = AggregateLinkPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
 }
 
-export interface LinkConnectionSubscription
-  extends Promise<AsyncIterator<LinkConnection>>,
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<LinkEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateLinkSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface ExamEdge {
+  node: Exam;
+  cursor: String;
+}
+
+export interface ExamEdgePromise extends Promise<ExamEdge>, Fragmentable {
+  node: <T = ExamPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ExamEdgeSubscription
+  extends Promise<AsyncIterator<ExamEdge>>,
+    Fragmentable {
+  node: <T = ExamSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateSummary {
+  count: Int;
+}
+
+export interface AggregateSummaryPromise
+  extends Promise<AggregateSummary>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSummarySubscription
+  extends Promise<AsyncIterator<AggregateSummary>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface SummarySubscriptionPayload {
+  mutation: MutationType;
+  node: Summary;
+  updatedFields: String[];
+  previousValues: SummaryPreviousValues;
+}
+
+export interface SummarySubscriptionPayloadPromise
+  extends Promise<SummarySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SummaryPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SummaryPreviousValuesPromise>() => T;
+}
+
+export interface SummarySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SummarySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SummarySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SummaryPreviousValuesSubscription>() => T;
+}
+
+export interface SummaryConnection {
+  pageInfo: PageInfo;
+  edges: SummaryEdge[];
+}
+
+export interface SummaryConnectionPromise
+  extends Promise<SummaryConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<SummaryEdge>>() => T;
+  aggregate: <T = AggregateSummaryPromise>() => T;
+}
+
+export interface SummaryConnectionSubscription
+  extends Promise<AsyncIterator<SummaryConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SummaryEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSummarySubscription>() => T;
+}
+
+export interface Exam {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  status: ExamStatus;
+  syncCode?: String;
+}
+
+export interface ExamPromise extends Promise<Exam>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  status: () => Promise<ExamStatus>;
+  syncCode: () => Promise<String>;
+  interview: <T = InterviewPromise>() => T;
+  summaries: <T = FragmentableArray<Summary>>(args?: {
+    where?: SummaryWhereInput;
+    orderBy?: SummaryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  histories: <T = FragmentableArray<History>>(args?: {
+    where?: HistoryWhereInput;
+    orderBy?: HistoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  questionSnapshot: <T = QuestionSnapshotPromise>() => T;
+}
+
+export interface ExamSubscription
+  extends Promise<AsyncIterator<Exam>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  status: () => Promise<AsyncIterator<ExamStatus>>;
+  syncCode: () => Promise<AsyncIterator<String>>;
+  interview: <T = InterviewSubscription>() => T;
+  summaries: <T = Promise<AsyncIterator<SummarySubscription>>>(args?: {
+    where?: SummaryWhereInput;
+    orderBy?: SummaryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  histories: <T = Promise<AsyncIterator<HistorySubscription>>>(args?: {
+    where?: HistoryWhereInput;
+    orderBy?: HistoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  questionSnapshot: <T = QuestionSnapshotSubscription>() => T;
+}
+
+export interface SnapCommentEdge {
+  node: SnapComment;
+  cursor: String;
+}
+
+export interface SnapCommentEdgePromise
+  extends Promise<SnapCommentEdge>,
+    Fragmentable {
+  node: <T = SnapCommentPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SnapCommentEdgeSubscription
+  extends Promise<AsyncIterator<SnapCommentEdge>>,
+    Fragmentable {
+  node: <T = SnapCommentSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ExamSubscriptionPayload {
+  mutation: MutationType;
+  node: Exam;
+  updatedFields: String[];
+  previousValues: ExamPreviousValues;
+}
+
+export interface ExamSubscriptionPayloadPromise
+  extends Promise<ExamSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ExamPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ExamPreviousValuesPromise>() => T;
+}
+
+export interface ExamSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ExamSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ExamSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ExamPreviousValuesSubscription>() => T;
+}
+
+export interface AggregateQuestionSnapshot {
+  count: Int;
+}
+
+export interface AggregateQuestionSnapshotPromise
+  extends Promise<AggregateQuestionSnapshot>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateQuestionSnapshotSubscription
+  extends Promise<AsyncIterator<AggregateQuestionSnapshot>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ExamPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  status: ExamStatus;
+  syncCode?: String;
+}
+
+export interface ExamPreviousValuesPromise
+  extends Promise<ExamPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  status: () => Promise<ExamStatus>;
+  syncCode: () => Promise<String>;
+}
+
+export interface ExamPreviousValuesSubscription
+  extends Promise<AsyncIterator<ExamPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  status: () => Promise<AsyncIterator<ExamStatus>>;
+  syncCode: () => Promise<AsyncIterator<String>>;
+}
+
+export interface QuestionSnapshotConnection {
+  pageInfo: PageInfo;
+  edges: QuestionSnapshotEdge[];
+}
+
+export interface QuestionSnapshotConnectionPromise
+  extends Promise<QuestionSnapshotConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<QuestionSnapshotEdge>>() => T;
+  aggregate: <T = AggregateQuestionSnapshotPromise>() => T;
+}
+
+export interface QuestionSnapshotConnectionSubscription
+  extends Promise<AsyncIterator<QuestionSnapshotConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<QuestionSnapshotEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateQuestionSnapshotSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -709,37 +2660,191 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface AggregateQuestion {
+  count: Int;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface AggregateQuestionPromise
+  extends Promise<AggregateQuestion>,
     Fragmentable {
-  count: () => Promise<Long>;
+  count: () => Promise<Int>;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
+export interface AggregateQuestionSubscription
+  extends Promise<AsyncIterator<AggregateQuestion>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserEdge {
-  node: User;
+export interface HistorySubscriptionPayload {
+  mutation: MutationType;
+  node: History;
+  updatedFields: String[];
+  previousValues: HistoryPreviousValues;
+}
+
+export interface HistorySubscriptionPayloadPromise
+  extends Promise<HistorySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = HistoryPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = HistoryPreviousValuesPromise>() => T;
+}
+
+export interface HistorySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<HistorySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = HistorySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = HistoryPreviousValuesSubscription>() => T;
+}
+
+export interface QuestionConnection {
+  pageInfo: PageInfo;
+  edges: QuestionEdge[];
+}
+
+export interface QuestionConnectionPromise
+  extends Promise<QuestionConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<QuestionEdge>>() => T;
+  aggregate: <T = AggregateQuestionPromise>() => T;
+}
+
+export interface QuestionConnectionSubscription
+  extends Promise<AsyncIterator<QuestionConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<QuestionEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateQuestionSubscription>() => T;
+}
+
+export interface HistoryPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  code: String;
+}
+
+export interface HistoryPreviousValuesPromise
+  extends Promise<HistoryPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  code: () => Promise<String>;
+}
+
+export interface HistoryPreviousValuesSubscription
+  extends Promise<AsyncIterator<HistoryPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  code: () => Promise<AsyncIterator<String>>;
+}
+
+export interface Question {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  type: QuestionType;
+  name: String;
+  content: String;
+  test?: String;
+  tags: String[];
+}
+
+export interface QuestionPromise extends Promise<Question>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  type: () => Promise<QuestionType>;
+  name: () => Promise<String>;
+  content: () => Promise<String>;
+  test: () => Promise<String>;
+  tags: () => Promise<String[]>;
+}
+
+export interface QuestionSubscription
+  extends Promise<AsyncIterator<Question>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  type: () => Promise<AsyncIterator<QuestionType>>;
+  name: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  test: () => Promise<AsyncIterator<String>>;
+  tags: () => Promise<AsyncIterator<String[]>>;
+}
+
+export interface ExamConnection {
+  pageInfo: PageInfo;
+  edges: ExamEdge[];
+}
+
+export interface ExamConnectionPromise
+  extends Promise<ExamConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ExamEdge>>() => T;
+  aggregate: <T = AggregateExamPromise>() => T;
+}
+
+export interface ExamConnectionSubscription
+  extends Promise<AsyncIterator<ExamConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ExamEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateExamSubscription>() => T;
+}
+
+export interface InterviewEdge {
+  node: Interview;
   cursor: String;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
+export interface InterviewEdgePromise
+  extends Promise<InterviewEdge>,
+    Fragmentable {
+  node: <T = InterviewPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface InterviewEdgeSubscription
+  extends Promise<AsyncIterator<InterviewEdge>>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
+  node: <T = InterviewSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface InterviewSubscriptionPayload {
+  mutation: MutationType;
+  node: Interview;
+  updatedFields: String[];
+  previousValues: InterviewPreviousValues;
+}
+
+export interface InterviewSubscriptionPayloadPromise
+  extends Promise<InterviewSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = InterviewPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = InterviewPreviousValuesPromise>() => T;
+}
+
+export interface InterviewSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<InterviewSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = InterviewSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = InterviewPreviousValuesSubscription>() => T;
 }
 
 export interface UserSubscriptionPayload {
@@ -767,56 +2872,577 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface LinkPreviousValues {
+export interface InterviewPreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
-  description: String;
-  url: String;
+  updatedAt: DateTimeOutput;
+  status: InterviewStatus;
+  intervieweeName: String;
+  description?: String;
+  password?: String;
 }
 
-export interface LinkPreviousValuesPromise
-  extends Promise<LinkPreviousValues>,
+export interface InterviewPreviousValuesPromise
+  extends Promise<InterviewPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  status: () => Promise<InterviewStatus>;
+  intervieweeName: () => Promise<String>;
   description: () => Promise<String>;
-  url: () => Promise<String>;
+  password: () => Promise<String>;
 }
 
-export interface LinkPreviousValuesSubscription
-  extends Promise<AsyncIterator<LinkPreviousValues>>,
+export interface InterviewPreviousValuesSubscription
+  extends Promise<AsyncIterator<InterviewPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  status: () => Promise<AsyncIterator<InterviewStatus>>;
+  intervieweeName: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
-  url: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserConnection {
+export interface Summary {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  author: String;
+  content: String;
+}
+
+export interface SummaryPromise extends Promise<Summary>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  author: () => Promise<String>;
+  content: () => Promise<String>;
+  exam: <T = ExamPromise>() => T;
+}
+
+export interface SummarySubscription
+  extends Promise<AsyncIterator<Summary>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  author: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  exam: <T = ExamSubscription>() => T;
+}
+
+export interface QuestionSnapshot {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  questionId: String;
+  type: QuestionType;
+  name: String;
+  content: String;
+  test?: String;
+}
+
+export interface QuestionSnapshotPromise
+  extends Promise<QuestionSnapshot>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  questionId: () => Promise<String>;
+  type: () => Promise<QuestionType>;
+  name: () => Promise<String>;
+  content: () => Promise<String>;
+  test: () => Promise<String>;
+  exam: <T = ExamPromise>() => T;
+}
+
+export interface QuestionSnapshotSubscription
+  extends Promise<AsyncIterator<QuestionSnapshot>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  questionId: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<QuestionType>>;
+  name: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  test: () => Promise<AsyncIterator<String>>;
+  exam: <T = ExamSubscription>() => T;
+}
+
+export interface AggregateSnapComment {
+  count: Int;
+}
+
+export interface AggregateSnapCommentPromise
+  extends Promise<AggregateSnapComment>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateSnapCommentSubscription
+  extends Promise<AsyncIterator<AggregateSnapComment>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface QuestionSubscriptionPayload {
+  mutation: MutationType;
+  node: Question;
+  updatedFields: String[];
+  previousValues: QuestionPreviousValues;
+}
+
+export interface QuestionSubscriptionPayloadPromise
+  extends Promise<QuestionSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = QuestionPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = QuestionPreviousValuesPromise>() => T;
+}
+
+export interface QuestionSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<QuestionSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = QuestionSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = QuestionPreviousValuesSubscription>() => T;
+}
+
+export interface QuestionSnapshotEdge {
+  node: QuestionSnapshot;
+  cursor: String;
+}
+
+export interface QuestionSnapshotEdgePromise
+  extends Promise<QuestionSnapshotEdge>,
+    Fragmentable {
+  node: <T = QuestionSnapshotPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface QuestionSnapshotEdgeSubscription
+  extends Promise<AsyncIterator<QuestionSnapshotEdge>>,
+    Fragmentable {
+  node: <T = QuestionSnapshotSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface QuestionPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  type: QuestionType;
+  name: String;
+  content: String;
+  test?: String;
+  tags: String[];
+}
+
+export interface QuestionPreviousValuesPromise
+  extends Promise<QuestionPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  type: () => Promise<QuestionType>;
+  name: () => Promise<String>;
+  content: () => Promise<String>;
+  test: () => Promise<String>;
+  tags: () => Promise<String[]>;
+}
+
+export interface QuestionPreviousValuesSubscription
+  extends Promise<AsyncIterator<QuestionPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  type: () => Promise<AsyncIterator<QuestionType>>;
+  name: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  test: () => Promise<AsyncIterator<String>>;
+  tags: () => Promise<AsyncIterator<String[]>>;
+}
+
+export interface QuestionEdge {
+  node: Question;
+  cursor: String;
+}
+
+export interface QuestionEdgePromise
+  extends Promise<QuestionEdge>,
+    Fragmentable {
+  node: <T = QuestionPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface QuestionEdgeSubscription
+  extends Promise<AsyncIterator<QuestionEdge>>,
+    Fragmentable {
+  node: <T = QuestionSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SnapComment {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  author: String;
+  content: String;
+}
+
+export interface SnapCommentPromise extends Promise<SnapComment>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  author: () => Promise<String>;
+  content: () => Promise<String>;
+  history: <T = HistoryPromise>() => T;
+}
+
+export interface SnapCommentSubscription
+  extends Promise<AsyncIterator<SnapComment>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  author: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  history: <T = HistorySubscription>() => T;
+}
+
+export interface AggregateInterview {
+  count: Int;
+}
+
+export interface AggregateInterviewPromise
+  extends Promise<AggregateInterview>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateInterviewSubscription
+  extends Promise<AsyncIterator<AggregateInterview>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface QuestionSnapshotSubscriptionPayload {
+  mutation: MutationType;
+  node: QuestionSnapshot;
+  updatedFields: String[];
+  previousValues: QuestionSnapshotPreviousValues;
+}
+
+export interface QuestionSnapshotSubscriptionPayloadPromise
+  extends Promise<QuestionSnapshotSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = QuestionSnapshotPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = QuestionSnapshotPreviousValuesPromise>() => T;
+}
+
+export interface QuestionSnapshotSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<QuestionSnapshotSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = QuestionSnapshotSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = QuestionSnapshotPreviousValuesSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SnapCommentConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: SnapCommentEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface SnapCommentConnectionPromise
+  extends Promise<SnapCommentConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<SnapCommentEdge>>() => T;
+  aggregate: <T = AggregateSnapCommentPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface SnapCommentConnectionSubscription
+  extends Promise<AsyncIterator<SnapCommentConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SnapCommentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSnapCommentSubscription>() => T;
+}
+
+export interface SnapCommentPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  author: String;
+  content: String;
+}
+
+export interface SnapCommentPreviousValuesPromise
+  extends Promise<SnapCommentPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  author: () => Promise<String>;
+  content: () => Promise<String>;
+}
+
+export interface SnapCommentPreviousValuesSubscription
+  extends Promise<AsyncIterator<SnapCommentPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  author: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SnapCommentSubscriptionPayload {
+  mutation: MutationType;
+  node: SnapComment;
+  updatedFields: String[];
+  previousValues: SnapCommentPreviousValues;
+}
+
+export interface SnapCommentSubscriptionPayloadPromise
+  extends Promise<SnapCommentSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SnapCommentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SnapCommentPreviousValuesPromise>() => T;
+}
+
+export interface SnapCommentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SnapCommentSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SnapCommentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SnapCommentPreviousValuesSubscription>() => T;
+}
+
+export interface User {
+  id: ID_Output;
+  email: String;
+  password: String;
+  name: String;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  name: () => Promise<String>;
+  hostedInterviews: <T = FragmentableArray<Interview>>(args?: {
+    where?: InterviewWhereInput;
+    orderBy?: InterviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  hostedInterviews: <T = Promise<AsyncIterator<InterviewSubscription>>>(args?: {
+    where?: InterviewWhereInput;
+    orderBy?: InterviewOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface QuestionSnapshotPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  questionId: String;
+  type: QuestionType;
+  name: String;
+  content: String;
+  test?: String;
+}
+
+export interface QuestionSnapshotPreviousValuesPromise
+  extends Promise<QuestionSnapshotPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  questionId: () => Promise<String>;
+  type: () => Promise<QuestionType>;
+  name: () => Promise<String>;
+  content: () => Promise<String>;
+  test: () => Promise<String>;
+}
+
+export interface QuestionSnapshotPreviousValuesSubscription
+  extends Promise<AsyncIterator<QuestionSnapshotPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  questionId: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<QuestionType>>;
+  name: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  test: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SummaryPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  author: String;
+  content: String;
+}
+
+export interface SummaryPreviousValuesPromise
+  extends Promise<SummaryPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  author: () => Promise<String>;
+  content: () => Promise<String>;
+}
+
+export interface SummaryPreviousValuesSubscription
+  extends Promise<AsyncIterator<SummaryPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  author: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SummaryEdge {
+  node: Summary;
+  cursor: String;
+}
+
+export interface SummaryEdgePromise extends Promise<SummaryEdge>, Fragmentable {
+  node: <T = SummaryPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SummaryEdgeSubscription
+  extends Promise<AsyncIterator<SummaryEdge>>,
+    Fragmentable {
+  node: <T = SummarySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface InterviewConnection {
+  pageInfo: PageInfo;
+  edges: InterviewEdge[];
+}
+
+export interface InterviewConnectionPromise
+  extends Promise<InterviewConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<InterviewEdge>>() => T;
+  aggregate: <T = AggregateInterviewPromise>() => T;
+}
+
+export interface InterviewConnectionSubscription
+  extends Promise<AsyncIterator<InterviewConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<InterviewEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateInterviewSubscription>() => T;
+}
+
+export interface Interview {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  status: InterviewStatus;
+  intervieweeName: String;
+  description?: String;
+  password?: String;
+}
+
+export interface InterviewPromise extends Promise<Interview>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  status: () => Promise<InterviewStatus>;
+  intervieweeName: () => Promise<String>;
+  description: () => Promise<String>;
+  host: <T = UserPromise>() => T;
+  password: () => Promise<String>;
+  exams: <T = FragmentableArray<Exam>>(args?: {
+    where?: ExamWhereInput;
+    orderBy?: ExamOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface InterviewSubscription
+  extends Promise<AsyncIterator<Interview>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  status: () => Promise<AsyncIterator<InterviewStatus>>;
+  intervieweeName: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  host: <T = UserSubscription>() => T;
+  password: () => Promise<AsyncIterator<String>>;
+  exams: <T = Promise<AsyncIterator<ExamSubscription>>>(args?: {
+    where?: ExamWhereInput;
+    orderBy?: ExamOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Boolean = boolean;
+export type Int = number;
 
 export type Long = string;
 
@@ -825,11 +3451,6 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
 
 /*
 DateTime scalar input type, allowing Date
@@ -842,9 +3463,14 @@ DateTime scalar output type, which is always a string
 export type DateTimeOutput = string;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type Int = number;
+export type String = string;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 /**
  * Model Metadata
@@ -852,7 +3478,43 @@ export type Int = number;
 
 export const models: Model[] = [
   {
-    name: "Link",
+    name: "Exam",
+    embedded: false
+  },
+  {
+    name: "ExamStatus",
+    embedded: false
+  },
+  {
+    name: "History",
+    embedded: false
+  },
+  {
+    name: "Interview",
+    embedded: false
+  },
+  {
+    name: "InterviewStatus",
+    embedded: false
+  },
+  {
+    name: "Question",
+    embedded: false
+  },
+  {
+    name: "QuestionSnapshot",
+    embedded: false
+  },
+  {
+    name: "QuestionType",
+    embedded: false
+  },
+  {
+    name: "SnapComment",
+    embedded: false
+  },
+  {
+    name: "Summary",
     embedded: false
   },
   {

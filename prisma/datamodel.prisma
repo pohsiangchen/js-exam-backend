@@ -1,15 +1,96 @@
-type Link {
-  id: ID! @unique
-  createdAt: DateTime!
-  description: String!
-  url: String!
-  postedBy: User
-}
-
 type User {
   id: ID! @unique
-  name: String!
   email: String! @unique
   password: String!
-  links: [Link!]!
+  name: String!
+  hostedInterviews: [Interview!]!
+}
+
+type Interview {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: InterviewStatus! @default(value: "IN_PROGRESS")
+  intervieweeName: String!
+  description: String
+  host: User!
+  password: String
+  exams: [Exam!]!
+  # users: [User!]! # host & observers
+}
+
+type Exam {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: ExamStatus! @default(value: "IN_PROGRESS")
+  syncCode: String
+  interview: Interview!
+  summaries: [Summary!]!
+  histories: [History!]!
+  questionSnapshot: QuestionSnapshot!
+}
+
+type Summary {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  author: String!
+  content: String!
+  exam: Exam!
+}
+
+type History {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  code: String!
+  exam: Exam!
+  snapComments: [SnapComment!]!
+}
+
+type SnapComment {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  author: String!
+  content: String!
+  history: History!
+}
+
+type Question {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  type: QuestionType!
+  name: String!
+  content: String!
+  test: String
+  tags: [String!]!
+}
+
+type QuestionSnapshot {
+  id: ID! @unique
+  createdAt: DateTime!
+  questionId: String!
+  type: QuestionType!
+  name: String!
+  content: String!
+  test: String
+  exam: Exam!
+}
+
+enum InterviewStatus {
+  IN_PROGRESS
+  CLOSED
+}
+
+enum ExamStatus {
+  IN_PROGRESS
+  CLOSED
+}
+
+enum QuestionType {
+  JAVASCRIPT
+  REACTJS
 }

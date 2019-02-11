@@ -1,35 +1,60 @@
+# import Interview from './generated/prisma.graphql'
+# import Exam from './generated/prisma.graphql'
+# import Summary from './generated/prisma.graphql'
+# import History from './generated/prisma.graphql'
+# import SnapComment from './generated/prisma.graphql'
+# import Question from './generated/prisma.graphql'
+# import QuestionSnapshot from './generated/prisma.graphql'
+
 type Query {
-  info: String!
-  feed: [Link!]!
-  # Fetch a single link by its `id`
-  link(id: ID!): Link
+  exam(where: ExamWhereUniqueInput!): Exam
+  exams(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExamConnection!
+  history(where: HistoryWhereUniqueInput!): History
+  histories(where: HistoryWhereInput, orderBy: HistoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HistoryConnection!
+  interview(where: InterviewWhereUniqueInput!): Interview
+  interviews(where: InterviewWhereInput, orderBy: InterviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InterviewConnection!
+  question(where: QuestionWhereUniqueInput!): Question
+  questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionConnection!
+  questionSnapshot(where: QuestionSnapshotWhereUniqueInput!): QuestionSnapshot  
+  questionSnapshots(where: QuestionSnapshotWhereInput, orderBy: QuestionSnapshotOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionSnapshotConnection!
+  snapComment(where: SnapCommentWhereUniqueInput!): SnapComment
+  snapComments(where: SnapCommentWhereInput, orderBy: SnapCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SnapCommentConnection!
+  summary(where: SummaryWhereUniqueInput!): Summary
+  summaries(where: SummaryWhereInput, orderBy: SummaryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SummaryConnection!
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
+  me: User
 }
 
 type Mutation {
-  post(url: String!, description: String!): Link!
-  # Update a link
-  updateLink(id: ID!, url: String, description: String): Link
-  # Delete a link
-  deleteLink(id: ID!): Link
-  signup(email: String!, password: String!, name: String!): AuthPayload
-  login(email: String!, password: String!): AuthPayload
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createDraft(title: String!, content: String!): Post!
+  publish(id: ID!): Post!
+  deletePost(id: ID!): Post!
 }
 
-type Link {
-  id: ID! @unique
-  description: String!
-  url: String!
-  postedBy: User
+type Subscription {
+  feedSubscription: Post
 }
 
 type AuthPayload {
-  token: String
-  user: User
+  token: String!
+  user: User!
 }
 
 type User {
   id: ID!
-  name: String!
   email: String!
-  links: [Link!]!
+  name: String!
+  posts: [Post!]!
+}
+
+type Post {
+  id: ID!
+  published: Boolean!
+  title: String!
+  content: String!
+  author: User!
 }
