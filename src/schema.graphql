@@ -8,19 +8,75 @@
 
 type Query {
   exam(where: ExamWhereUniqueInput!): Exam
-  exams(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExamConnection!
+  exams(
+    where: ExamWhereInput
+    orderBy: ExamOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): ExamConnection!
   history(where: HistoryWhereUniqueInput!): History
-  histories(where: HistoryWhereInput, orderBy: HistoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HistoryConnection!
+  histories(
+    where: HistoryWhereInput
+    orderBy: HistoryOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): HistoryConnection!
   interview(where: InterviewWhereUniqueInput!): Interview
-  interviews(where: InterviewWhereInput, orderBy: InterviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InterviewConnection!
+  interviews(
+    where: InterviewWhereInput
+    orderBy: InterviewOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): InterviewConnection!
   question(where: QuestionWhereUniqueInput!): Question
-  questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionConnection!
-  questionSnapshot(where: QuestionSnapshotWhereUniqueInput!): QuestionSnapshot  
-  questionSnapshots(where: QuestionSnapshotWhereInput, orderBy: QuestionSnapshotOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionSnapshotConnection!
+  questions(
+    where: QuestionWhereInput
+    orderBy: QuestionOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): QuestionConnection!
+  questionSnapshot(where: QuestionSnapshotWhereUniqueInput!): QuestionSnapshot
+  questionSnapshots(
+    where: QuestionSnapshotWhereInput
+    orderBy: QuestionSnapshotOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): QuestionSnapshotConnection!
   snapComment(where: SnapCommentWhereUniqueInput!): SnapComment
-  snapComments(where: SnapCommentWhereInput, orderBy: SnapCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SnapCommentConnection!
+  snapComments(
+    where: SnapCommentWhereInput
+    orderBy: SnapCommentOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): SnapCommentConnection!
   summary(where: SummaryWhereUniqueInput!): Summary
-  summaries(where: SummaryWhereInput, orderBy: SummaryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SummaryConnection!
+  summaries(
+    where: SummaryWhereInput
+    orderBy: SummaryOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): SummaryConnection!
   feed: [Post!]!
   drafts: [Post!]!
   post(id: ID!): Post
@@ -33,6 +89,14 @@ type Mutation {
   createDraft(title: String!, content: String!): Post!
   publish(id: ID!): Post!
   deletePost(id: ID!): Post!
+  createInterview(
+    status: InterviewStatus
+    intervieweeName: String!
+    description: String
+    password: String
+  ): Interview!
+  updateInterview(data: InterviewUpdateInput!, where: InterviewWhereUniqueInput!): Interview
+  deleteInterview(where: InterviewWhereUniqueInput!): Interview
 }
 
 type Subscription {
@@ -49,6 +113,7 @@ type User {
   email: String!
   name: String!
   posts: [Post!]!
+  hostedInterviews: [Interview!]!
 }
 
 type Post {

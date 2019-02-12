@@ -1,6 +1,0 @@
-# import SnapComment from './generated/prisma.graphql'
-
-type Query {
-  snapComment(where: SnapCommentWhereUniqueInput!): SnapComment
-  snapComments(where: SnapCommentWhereInput, orderBy: SnapCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SnapCommentConnection!
-}

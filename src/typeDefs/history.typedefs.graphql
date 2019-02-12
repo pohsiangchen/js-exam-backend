@@ -1,6 +1,0 @@
-# import History from './generated/prisma.graphql'
-
-type Query {
-  history(where: HistoryWhereUniqueInput!): History
-  histories(where: HistoryWhereInput, orderBy: HistoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HistoryConnection!
-}
