@@ -1,0 +1,6 @@
+# import Summary from './generated/prisma.graphql'
+
+type Query {
+  summary(where: SummaryWhereUniqueInput!): Summary
+  summaries(where: SummaryWhereInput, orderBy: SummaryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SummaryConnection!
+}

@@ -1,0 +1,6 @@
+# import Question from './generated/prisma.graphql'
+
+type Query {
+  question(where: QuestionWhereUniqueInput!): Question
+  questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionConnection!
+}

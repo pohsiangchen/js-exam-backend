@@ -1,0 +1,6 @@
+# import Interview from './generated/prisma.graphql'
+
+type Query {
+  interview(where: InterviewWhereUniqueInput!): Interview
+  interviews(where: InterviewWhereInput, orderBy: InterviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InterviewConnection!
+}

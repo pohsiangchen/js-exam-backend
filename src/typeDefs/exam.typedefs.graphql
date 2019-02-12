@@ -1,0 +1,6 @@
+# import Exam from './generated/prisma.graphql'
+
+type Query {
+  exam(where: ExamWhereUniqueInput!): Exam
+  exams(where: ExamWhereInput, orderBy: ExamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExamConnection!
+}

@@ -1,0 +1,6 @@
+# import QuestionSnapshot from './generated/prisma.graphql'
+
+type Query {
+  questionSnapshot(where: QuestionSnapshotWhereUniqueInput!): QuestionSnapshot  
+  questionSnapshots(where: QuestionSnapshotWhereInput, orderBy: QuestionSnapshotOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuestionSnapshotConnection!
+}
